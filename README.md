@@ -1,1 +1,1 @@
-# AppSendEmail
+# app-send-mail
