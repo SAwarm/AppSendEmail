@@ -20,7 +20,7 @@
 				<div class="col-md-12">
 
 					<div class="card-body font-weight-bold">
-						<form action="process_mail.php" method="POST">
+						<form action="./src/App/ProcessMail.php" method="POST">
 							<div class="form-group">
 								<label for="to">To</label>
 								<input type="text" class="form-control" id="to" placeholder="jonas@domain.com" name="to">
