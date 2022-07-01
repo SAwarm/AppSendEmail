@@ -8,8 +8,11 @@ require "./../../libraries/PHPMailer/PHPMailer.php";
 require "./../../libraries/PHPMailer/POP3.php";
 require "./../../libraries/PHPMailer/SMTP.php";
 
+require __DIR__ . "./../../Config/ServiceMail.php";
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use Src\Config\MailConfig;
 
 class SendMailClass extends AttributesMailClass
 {
@@ -28,16 +31,16 @@ class SendMailClass extends AttributesMailClass
             //Server settings
             //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                                    //Enable verbose debug output
             $mail->isSMTP();                                                            //Send using SMTP
-            $mail->Host       = 'smtp-mail.outlook.com';                                //Set the SMTP server to send through
+            $mail->Host       = MailConfig::$service;                               //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                                   //Enable SMTP authentication
-            $mail->Username   = 'email@hotmail.com';                                    //SMTP username
-            $mail->Password   = 'password';                                             //SMTP password
+            $mail->Username   = MailConfig::$emailName;                                   //SMTP username
+            $mail->Password   = MailConfig::$emailPassword;                                             //SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             //$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;                          //Enable implicit TLS encryption
-            $mail->Port       = 587;                                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            $mail->Port       = MailConfig::$port;                                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //Recipients
-            $mail->setFrom('email@hotmail.com', 'Remetente estudo');
+            $mail->setFrom(MailConfig::$emailName, 'Remetente estudo');
             $mail->addAddress($this->to);                                               //Add a recipient
             //$mail->addAddress('ellen@example.com');                                   //Name is optional
             //$mail->addReplyTo('info@example.com', 'Information');
