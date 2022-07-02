@@ -2,14 +2,6 @@
 
 namespace Src\App\Classes;
 
-require "./../../libraries/PHPMailer/Exception.php";
-require "./../../libraries/PHPMailer/OAuth.php";
-require "./../../libraries/PHPMailer/PHPMailer.php";
-require "./../../libraries/PHPMailer/POP3.php";
-require "./../../libraries/PHPMailer/SMTP.php";
-
-require __DIR__ . "./../../Config/ServiceMail.php";
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use Src\Config\MailConfig;
