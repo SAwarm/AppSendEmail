@@ -2,10 +2,6 @@
 
 namespace Src\App;
 
-require "./Classes/AttributesMailClass.php";
-require "./Validation/ValidationMessage.php";
-require "./Classes/SendMailClass.php";
-
 use Src\App\Classes\AttributesMailClass;
 use Src\Validation\ValidationMessage;
 use Src\App\Classes\SendMailClass;
