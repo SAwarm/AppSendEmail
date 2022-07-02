@@ -1,4 +1,10 @@
-	<head>
+<?php
+require_once __DIR__ . "./../vendor/autoload.php";
+
+
+//------------------------------------------------------------------------------//
+?>
+<!-- <head>
 		<meta charset="utf-8" />
 		<title>App Mail Send</title>
 
@@ -42,4 +48,4 @@
 				</div>
 			</div>
 		</div>
-	</body>
+	</body> -->
