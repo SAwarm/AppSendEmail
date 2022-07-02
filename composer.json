@@ -1,0 +1,17 @@
+{
+    "name": "jonas-elias/app-send-mail",
+    "require": {
+        "php": ">=8.0"
+    },
+    "authors": [
+        {
+            "name": "Jonas da Silva Elias",
+            "email": "jonasdasilvaelias@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Src\\": "src/"
+        }
+    }
+}
