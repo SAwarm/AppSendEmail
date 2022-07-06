@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Validation; 
+namespace Src\App\Validation;
 
 use Src\App\Classes\AttributesMailClass;
 
