@@ -3,7 +3,7 @@
 namespace Src\App;
 
 use Src\App\Classes\AttributesMailClass;
-use Src\Validation\ValidationMessage;
+use Src\App\Validation\ValidationMessage;
 use Src\App\Classes\SendMailClass;
 
 class ProcessMail
@@ -38,20 +38,17 @@ foreach ($_POST as $key => $value) {
     $attributes->__set($key, $value);
 }
 
-$processMail = new ProcessMail($attributes);
-$processMail->send();
-
-
-
 $validation = new ValidationMessage($attributes);
+$processMail = new ProcessMail($attributes);
+
 if ($validation->validate()) {
+    $processMail->send();
     echo "OK";
     return;
 } else {
     echo "NOK";
     return;
 }
-
 
 ?>
 
