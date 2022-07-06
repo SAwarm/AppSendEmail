@@ -2,8 +2,8 @@
 
 namespace Src\App\Classes;
 
-use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
 use Src\Config\MailConfig;
 
 class SendMailClass extends AttributesMailClass
