@@ -18,11 +18,15 @@ class ProcessMail
     public function send()
     {
         if (!$this->validate()) {
-            return $this->attributes->message = "Error";
+            return false;
         }
 
         $sendMail = new SendMailClass($this->attributes);
-        return $sendMail->sendMail();
+        if ($sendMail->sendMail() == 200) {
+            return true;
+        }
+
+        return false;
     }
 
     public function validate()
@@ -41,11 +45,11 @@ foreach ($_POST as $key => $value) {
 $validation = new ValidationMessage($attributes);
 $processMail = new ProcessMail($attributes);
 
-if ($validation->validate()) {
-    $processMail->send();
-    echo "OK";
-    return;
-} else {
-    echo "NOK";
+if ($processMail->send()) {
+    $_SESSION['success'] = true;
+    header('location: /');
     return;
 }
+
+$_SESSION['error'] = true;
+header('location: /');
