@@ -5,6 +5,23 @@
 </head>
 
 <body>
+
+    <?php if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    } ?>
+    <?php if (isset($_SESSION['success'])) { ?>
+        <div class="alert alert-success">
+            <strong>Success!</strong>
+        </div>
+    <?php session_destroy();
+    } ?>
+    <?php if (isset($_SESSION['error'])) { ?>
+        <div class="alert alert-danger">
+            <strong>Error!</strong>
+        </div>
+    <?php session_destroy();
+    } ?>
+
     <div class="container">
         <div class="py-3 text-center">
             <img class="d-block mx-auto mb-2" src="./images/logo.png" alt="" width="72" height="72">
