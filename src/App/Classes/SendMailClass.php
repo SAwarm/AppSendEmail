@@ -51,14 +51,11 @@ class SendMailClass extends AttributesMailClass
 
             $mail->send();
 
-            $this->status['codigo_status'] = 1;
-            $this->status['descricao_status'] = 'E-mail enviado com sucesso';
+            $this->status['status_cod'] = 200;
 
-            echo 'E-mail enviado com sucesso';
+            return $this->status['status_cod'];
         } catch (Exception $e) {
-
-            $this->status['codigo_status'] = 2;
-            $this->status['descricao_status'] = 'Não foi possível enviar o e-mail ' . $mail->ErrorInfo;
+            return $this->status['status_cod'] = $e->getCode();
         }
     }
 }
