@@ -22,11 +22,14 @@ class ProcessMail
         }
 
         $sendMail = new SendMailClass($this->attributes);
-        if ($sendMail->sendMail() == 200) {
+
+        $response = $sendMail->sendMail();
+
+        if ($response['status_code'] == 200) {
             return true;
         }
 
-        return false;
+        return $response['description_status'];
     }
 
     public function validate()
