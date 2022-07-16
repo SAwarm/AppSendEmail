@@ -2,6 +2,7 @@
 
 namespace Src\App;
 
+use Exception;
 use Src\App\Classes\AttributesMailClass;
 use Src\App\Validation\ValidationMessage;
 use Src\App\Classes\SendMailClass;
@@ -22,7 +23,6 @@ class ProcessMail
         }
 
         $sendMail = new SendMailClass($this->attributes);
-
         $response = $sendMail->sendMail();
 
         if ($response['status_code'] == 200) {
@@ -45,14 +45,26 @@ foreach ($_POST as $key => $value) {
     $attributes->__set($key, $value);
 }
 
-$validation = new ValidationMessage($attributes);
-$processMail = new ProcessMail($attributes);
+try {
+    $validation = new ValidationMessage($attributes);
+    $processMail = new ProcessMail($attributes);
 
-if ($processMail->send()) {
-    $_SESSION['success'] = true;
+    if (!$validation->validate()) {
+        throw new Exception('Invalid Inputs!', 406);
+    }
+
+    $response = $processMail->send();
+
+    if ($response) {
+        $_SESSION['success'] = true;
+        $_SESSION['message'] = 'Mail sent successfully!';
+        header('location: /');
+        return;
+    }
+
+    throw new Exception($response, 500);
+} catch (Exception $e) {
+    $_SESSION['error'] = true;
+    $_SESSION['message'] = $e->getMessage();
     header('location: /');
-    return;
 }
-
-$_SESSION['error'] = true;
-header('location: /');
