@@ -7,16 +7,32 @@ use Src\App\Classes\AttributesMailClass;
 use Src\App\Validation\ValidationMessage;
 use Src\App\Classes\SendMailClass;
 
+/**
+ * Class ProcessMail
+ * @package Src\App
+ */
 class ProcessMail
 {
+    /**
+     * @var AttributesMailClass
+     */
     public $attributes;
 
+    /**
+     * method constructor
+     * @param AttributesMailClass $attributes
+     * @return void
+     */
     public function __construct(AttributesMailClass $attributes)
     {
         $this->attributes = $attributes;
     }
 
-    public function send()
+    /**
+     * method process send mail
+     * @return bool|string
+     */
+    public function send(): bool | string
     {
         if (!$this->validate()) {
             return false;
@@ -32,7 +48,11 @@ class ProcessMail
         return $response['description_status'];
     }
 
-    public function validate()
+    /**
+     * method call validate \ValidationMessage
+     * @return bool
+     */
+    public function validate(): bool
     {
         $validation = new ValidationMessage($this->attributes);
         return $validation->validate();
