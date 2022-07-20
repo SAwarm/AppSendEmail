@@ -6,6 +6,11 @@ use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 use Src\Config\MailConfig;
 
+/**
+ * Class SendMailClass
+ * @package Src\App\Classes
+ * @author <jonas-elias/>
+ */
 class SendMailClass extends AttributesMailClass
 {
     public function __construct(AttributesMailClass $attributes)
