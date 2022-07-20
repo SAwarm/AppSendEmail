@@ -2,10 +2,42 @@
 
 namespace Src\Config;
 
+/**
+ * Class MailConfig
+ * @package Src\Config
+ * @author <jonas-elias/>
+ */
 class MailConfig
 {
-    public static $service = 'smtp-mail.outlook.com';
-    public static $emailName = 'mail@hotmail.com';
-    public static $emailPassword = 'password';
-    public static $port = 587;
+    /**
+     * Service Mail SMTP
+     * @var string
+     * @example
+     * smtp-mail.outlook.com
+     */
+    public static $service;
+
+    /**
+     * Mail address .com
+     * @var string
+     * @example
+     * mail@hotmail.com
+     */
+    public static $emailName;
+
+    /**
+     * Mail password
+     * @var string
+     * @example
+     * password
+     */
+    public static $emailPassword;
+
+    /**
+     * Port service mail
+     * @var int
+     * @example
+     * 587
+     */
+    public static $port;
 }
