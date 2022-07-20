@@ -7,6 +7,7 @@ use Src\App\Classes\AttributesMailClass;
 /**
  * Class ValidationMessage
  * @package Src\App\Validation
+ * @author <jonas-elias/>
  */
 class ValidationMessage extends AttributesMailClass
 {
