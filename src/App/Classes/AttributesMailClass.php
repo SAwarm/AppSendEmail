@@ -5,6 +5,7 @@ namespace Src\App\Classes;
 /**
  * Class AttributesMailClass
  * @package Src\App\Classes
+ * @author <jonas-elias/>
  */
 class AttributesMailClass
 {
