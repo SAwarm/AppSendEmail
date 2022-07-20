@@ -10,6 +10,7 @@ use Src\App\Classes\SendMailClass;
 /**
  * Class ProcessMail
  * @package Src\App
+ * @author <jonas-elias/>
  */
 class ProcessMail
 {
