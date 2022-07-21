@@ -13,6 +13,12 @@ use Src\Config\MailConfig;
  */
 class SendMailClass extends AttributesMailClass
 {
+    /**
+     * Method constructor
+     * 
+     * @param AttributesMailClass $attributes
+     * @return void
+     */
     public function __construct(AttributesMailClass $attributes)
     {
         $this->to = $attributes->to;
@@ -20,7 +26,12 @@ class SendMailClass extends AttributesMailClass
         $this->message = $attributes->message;
     }
 
-    public function sendMail()
+    /**
+     * Method send mail
+     * 
+     * @return array
+     */
+    public function sendMail(): array
     {
         $mail = new PHPMailer(true);
 
