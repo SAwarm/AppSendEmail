@@ -49,4 +49,19 @@ class AttributesMailClass
     {
         $this->$atribute = $value;
     }
+
+    /**
+     * Method to set all elements
+     * 
+     * @param $_POST
+     * @return object
+     */
+    public function setAllElements($elements, $object): object
+    {
+        foreach ($elements as $key => $value) {
+            $object->__set($key, $value);
+        }
+
+        return $object;
+    }
 }
