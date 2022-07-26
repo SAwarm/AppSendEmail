@@ -34,11 +34,12 @@ class SendMailClass extends AttributesMailClass
     public function sendMail(): array
     {
         try {
+            // Create a new PHPMailer instance with attributes
             $mail = $this->configurationAttributesPHPMailer(new PHPMailer(true));
 
             //Recipients
             $mail->setFrom(MailConfig::$emailName, 'Remetente estudo');
-            $mail->addAddress($this->to);                                                 //Add a recipient
+            $mail->addAddress($this->to);
 
             //Content
             $mail->isHTML(true);                                                          //Set email format to HTML
@@ -60,15 +61,20 @@ class SendMailClass extends AttributesMailClass
         }
     }
 
-    protected function configurationAttributesPHPMailer($mail)
+    /**
+     * Method configuration attributes PHPMailer
+     * @param PHPMailer $mail
+     * @return PHPMailer
+     */
+    protected function configurationAttributesPHPMailer($mail): PHPMailer
     {
-        $mail->isSMTP();                                                              //Send using SMTP
-        $mail->Host       = MailConfig::$service;                                     //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                                                     //Enable SMTP authentication
-        $mail->Username   = MailConfig::$emailName;                                   //SMTP username
-        $mail->Password   = MailConfig::$emailPassword;                               //SMTP password
+        $mail->isSMTP();
+        $mail->Host       = MailConfig::$service;
+        $mail->SMTPAuth   = true;
+        $mail->Username   = MailConfig::$emailName;
+        $mail->Password   = MailConfig::$emailPassword;
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = MailConfig::$port;                                        //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        $mail->Port       = MailConfig::$port;
 
         return $mail;
     }
