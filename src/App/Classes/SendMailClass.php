@@ -34,30 +34,16 @@ class SendMailClass extends AttributesMailClass
     public function sendMail(): array
     {
         try {
-            // Create a new PHPMailer instance with attributes
-            $mail = $this->configurationAttributesPHPMailer(new PHPMailer(true));
+            $this->bodyToMail(
+                $this->configurationAddresses(
+                    $this->configurationAttributesPHPMailer(new PHPMailer(true))
+                )
+            )
+                ->send();
 
-            //Recipients
-            $mail->setFrom(MailConfig::$emailName, 'Remetente estudo');
-            $mail->addAddress($this->to);
-
-            //Content
-            $mail->isHTML(true);                                                          //Set email format to HTML
-            $mail->Subject =  $this->subject;
-            $mail->Body    =  $this->message;
-            $mail->AltBody = 'É necessário um cliente que suporte HTML5';
-
-            $mail->send();
-
-            $this->status['status_code'] = 200;
-            $this->status['description_status'] = 'Mail sent successfully!';
-
-            return $this->status;
+            return $this->formatResponse(200, 'Mail sent successfully!');
         } catch (Exception $e) {
-            $this->status['status_code'] = $e->getCode();
-            $this->status['description_status'] = $e->getMessage();
-
-            return $this->status;
+            return $this->formatResponse($e->getCode(), $e->getMessage());
         }
     }
 
@@ -66,7 +52,7 @@ class SendMailClass extends AttributesMailClass
      * @param PHPMailer $mail
      * @return PHPMailer
      */
-    protected function configurationAttributesPHPMailer($mail): PHPMailer
+    protected function configurationAttributesPHPMailer(PHPMailer $mail): PHPMailer
     {
         $mail->isSMTP();
         $mail->Host       = MailConfig::$service;
@@ -77,5 +63,47 @@ class SendMailClass extends AttributesMailClass
         $mail->Port       = MailConfig::$port;
 
         return $mail;
+    }
+
+    /**
+     * Method to configuration addresses
+     * 
+     * @return object
+     */
+    protected function configurationAddresses(PHPMailer $mail): PHPMailer
+    {
+        $mail->setFrom(MailConfig::$emailName, 'Remetente estudo');
+        $mail->addAddress($this->to);
+
+        return $mail;
+    }
+
+    /**
+     * Method to body to mail
+     * 
+     * @param PHPMailer $mail
+     * @return PHPMailer
+     */
+    protected function bodyToMail(PHPMailer $mail): PHPMailer
+    {
+        $mail->isHTML(true);
+        $mail->Subject =  $this->subject;
+        $mail->Body    =  $this->message;
+        $mail->AltBody = 'É necessário um cliente que suporte HTML5';
+
+        return $mail;
+    }
+
+    /**
+     * Method to format response
+     * 
+     * @return array
+     */
+    public function formatResponse(int $code, string $message): array
+    {
+        $this->status['status_code'] = $code;
+        $this->status['description_status'] = $message;
+
+        return $this->status;
     }
 }
