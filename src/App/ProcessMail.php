@@ -30,10 +30,11 @@ class ProcessMail
     }
 
     /**
-     * method process send mail
-     * @return bool|string
+     * Method process send mail
+     * 
+     * @return array
      */
-    public function send(): bool | string
+    public function send(): array
     {
         if (!$this->validate()) {
             return false;
@@ -43,10 +44,10 @@ class ProcessMail
         $response = $sendMail->sendMail();
 
         if ($response['status_code'] == 200) {
-            return true;
+            return $response;
         }
 
-        return $response['description_status'];
+        return $response;
     }
 
     /**
@@ -91,7 +92,7 @@ function orchestrationSendMail($attributes): mixed
 
         $response = $processMail->send();
 
-        if ($response) {
+        if ($response['status_code'] == 200) {
             $_SESSION['success'] = true;
             $_SESSION['message'] = 'Mail sent successfully!';
 
@@ -100,7 +101,7 @@ function orchestrationSendMail($attributes): mixed
             return true;
         }
 
-        throw new Exception($response, 500);
+        throw new Exception($response['description_status'], 500);
     } catch (Exception $e) {
         $_SESSION['error'] = true;
         $_SESSION['message'] = $e->getMessage();
