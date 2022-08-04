@@ -4,6 +4,7 @@ namespace Src\App\Classes;
 
 /**
  * Class AttributesMailClass
+ * 
  * @package Src\App\Classes
  * @author <jonas-elias/>
  */
@@ -12,17 +13,17 @@ class AttributesMailClass
     /**
      * @var string
      */
-    private $to;
+    private string $to;
 
     /**
      * @var string
      */
-    private $subject;
+    private string $subject;
 
     /**
      * @var string
      */
-    private $message;
+    private string $message;
 
     /**
      * @var array
@@ -30,7 +31,8 @@ class AttributesMailClass
     public $status = array('status_code' => null, 'description_status' => null);
 
     /**
-     * method __get elements
+     * Method __get elements
+     * 
      * @param string $attribute
      * @return mixed
      */
@@ -40,7 +42,8 @@ class AttributesMailClass
     }
 
     /**
-     * method __set elements
+     * Method __set elements
+     * 
      * @param string $attribute
      * @param mixed $value
      * @return void
