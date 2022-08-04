@@ -6,6 +6,7 @@ use Src\App\Classes\AttributesMailClass;
 
 /**
  * Class ValidationMessage
+ * 
  * @package Src\App\Validation
  * @author <jonas-elias/>
  */
@@ -13,24 +14,28 @@ class ValidationMessage extends AttributesMailClass
 {
     /**
      * to mail
+     * 
      * @var string
      */
     private $to;
 
     /**
      * subject mail
+     * 
      * @var string
      */
     private $subject;
 
     /**
      * message mail
+     * 
      * @var string
      */
     private $message;
 
     /**
-     * method constructor
+     * Method constructor
+     * 
      * @param AttributesMailClass $attributes
      * @return void
      */
@@ -42,7 +47,8 @@ class ValidationMessage extends AttributesMailClass
     }
 
     /**
-     * method validate
+     * Method validate
+     * 
      * @return bool
      */
     public function validate(): bool
