@@ -8,6 +8,7 @@ use Src\Config\MailConfig;
 
 /**
  * Class SendMailClass
+ * 
  * @package Src\App\Classes
  * @author <jonas-elias/>
  */
@@ -49,6 +50,7 @@ class SendMailClass extends AttributesMailClass
 
     /**
      * Method configuration attributes PHPMailer
+     * 
      * @param PHPMailer $mail
      * @return PHPMailer
      */
