@@ -9,24 +9,22 @@ use Src\App\Classes\SendMailClass;
 
 /**
  * Class ProcessMail
+ * 
  * @package Src\App
  * @author <jonas-elias/>
  */
 class ProcessMail
 {
     /**
-     * @var AttributesMailClass
-     */
-    public $attributes;
-
-    /**
-     * method constructor
+     * Method constructor
+     * 
      * @param AttributesMailClass $attributes
      * @return void
      */
-    public function __construct(AttributesMailClass $attributes)
-    {
-        $this->attributes = $attributes;
+    public function __construct(
+        public AttributesMailClass $attributes,
+        protected Exception $e
+    ) {
     }
 
     /**
@@ -84,10 +82,10 @@ function orchestrationSendMail($attributes): mixed
 {
     try {
         $validation = new ValidationMessage($attributes);
-        $processMail = new ProcessMail($attributes);
+        $processMail = new ProcessMail($attributes, new Exception());
 
         if (!$validation->validate()) {
-            throw new Exception('Invalid Inputs!', 406);
+            throw new $processMail->e('Invalid Inputs!', 406);
         }
 
         $response = $processMail->send();
@@ -101,7 +99,7 @@ function orchestrationSendMail($attributes): mixed
             return true;
         }
 
-        throw new Exception($response['description_status'], 500);
+        throw new $processMail->e($response['description_status'], 500);
     } catch (Exception $e) {
         $_SESSION['error'] = true;
         $_SESSION['message'] = $e->getMessage();
