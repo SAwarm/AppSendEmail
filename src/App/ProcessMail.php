@@ -19,11 +19,12 @@ class ProcessMail
      * Method constructor
      * 
      * @param AttributesMailClass $attributes
+     * @param \Exception $e
      * @return void
      */
     public function __construct(
         public AttributesMailClass $attributes,
-        protected Exception $e
+        public Exception $e
     ) {
     }
 
