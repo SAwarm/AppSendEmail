@@ -74,7 +74,7 @@ class SendMailClass extends AttributesMailClass
      */
     protected function configurationAddresses(PHPMailer $mail): PHPMailer
     {
-        $mail->setFrom(MailConfig::$emailName, 'Remetente estudo');
+        $mail->setFrom(MailConfig::$emailName, 'Mail sender');
         $mail->addAddress($this->to);
 
         return $mail;
@@ -91,7 +91,7 @@ class SendMailClass extends AttributesMailClass
         $mail->isHTML(true);
         $mail->Subject =  $this->subject;
         $mail->Body    =  $this->message;
-        $mail->AltBody = 'É necessário um cliente que suporte HTML5';
+        $mail->AltBody = 'Is necessary support for HTML 5';
 
         return $mail;
     }
