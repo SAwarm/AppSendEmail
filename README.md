@@ -8,12 +8,12 @@ This project is a simple application to send mails with <strong>PHP</strong>. Th
 
 <hr>
 
-# Requirements
+## Requirements
     PHP 8.0+
     PHP Mailer
     Account in the OUTLOOK
 
-# Installation
+## Installation
 
 Clone the repository:
 ```bash
@@ -29,7 +29,7 @@ Run server:
 $ php -S localhost:8080
 ```
 
-# Configuration
+## Configuration
 
 In file /Config/Mail.php, you can configure the mail with your account in the OUTLOOK.
 
@@ -37,7 +37,7 @@ In file /Config/Mail.php, you can configure the mail with your account in the OU
 
 <hr>
 
-# License
+## License
 ```bash
 MIT License - <jonas-elias/>
 ```
