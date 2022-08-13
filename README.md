@@ -35,7 +35,7 @@ In file /Config/Mail.php, you can configure the mail with your account in the OU
 
 <div align="center">
     <img src="./public/images/configimage.png" 
-    width="200" height="400" />
+    width="400" height="800" />
 </div>
 
 <hr>
