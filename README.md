@@ -33,7 +33,10 @@ $ php -S localhost:8080
 
 In file /Config/Mail.php, you can configure the mail with your account in the OUTLOOK.
 
-<img src="./public/images/configimage.png">
+<div style="text-align:center">
+    <img src="./public/images/configimage.png" 
+    width="200" height="400" />
+</div>
 
 <hr>
 
